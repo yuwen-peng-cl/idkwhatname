@@ -1,0 +1,18 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/identifiability_n1000_k1",
+ "model": "/Users/pengyuwen/Desktop/coding/identifiability_n1000_k1/model_b_lr3e-4/final",
+ "bilingual": false,
+ "memory": {
+  "b_other": 1.0
+ },
+ "transfer": {
+  "lm_fc": 0.10625,
+  "lm_free": 0.103125,
+  "probe_b": {
+   "L1": 0.11874999850988388,
+   "L2": 0.13124999403953552,
+   "L3": 0.14687499403953552,
+   "L4": 0.09687499701976776
+  }
+ }
+}

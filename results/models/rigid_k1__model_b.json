@@ -1,0 +1,18 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/rigid_k1",
+ "model": "/Users/pengyuwen/Desktop/coding/rigid_k1/model_b/final",
+ "bilingual": false,
+ "memory": {
+  "b_other": 0.125
+ },
+ "transfer": {
+  "lm_fc": 0.125,
+  "lm_free": 0.125,
+  "probe_b": {
+   "L1": 0.12890625,
+   "L2": 0.111328125,
+   "L3": 0.111328125,
+   "L4": 0.119140625
+  }
+ }
+}

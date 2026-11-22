@@ -1,0 +1,75 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/attronly32_k1",
+ "model": "/Users/pengyuwen/Desktop/coding/attronly32_k1/model_both_s44/final",
+ "bilingual": true,
+ "memory": {
+  "b_other": 1.0,
+  "a_seen": 1.0
+ },
+ "transfer": {
+  "lm_fc": 0.125,
+  "lm_free": 0.125,
+  "probe_b": {
+   "L1": 0.1171875,
+   "L2": 0.109375,
+   "L3": 0.1171875,
+   "L4": 0.1328125
+  },
+  "probe_ab": {
+   "L1": 0.125,
+   "L2": 0.125,
+   "L3": 0.125,
+   "L4": 0.125
+  }
+ },
+ "alignment": {
+  "static": {
+   "tested_exact": 0.078125,
+   "tested_group": 0.5078125,
+   "tested_lookalike": 0.078125,
+   "other_exact": 0.078125,
+   "other_group": 0.390625,
+   "centroid": 0.5
+  },
+  "L1": {
+   "tested_exact": 0.0625,
+   "tested_group": 0.4921875,
+   "tested_lookalike": 0.0625,
+   "other_exact": 0.078125,
+   "other_group": 0.4296875,
+   "centroid": 0.5
+  },
+  "L2": {
+   "tested_exact": 0.046875,
+   "tested_group": 0.53125,
+   "tested_lookalike": 0.046875,
+   "other_exact": 0.0859375,
+   "other_group": 0.453125,
+   "centroid": 0.5
+  },
+  "L3": {
+   "tested_exact": 0.0546875,
+   "tested_group": 0.5078125,
+   "tested_lookalike": 0.0546875,
+   "other_exact": 0.0859375,
+   "other_group": 0.4375,
+   "centroid": 0.5
+  },
+  "L4": {
+   "tested_exact": 0.0390625,
+   "tested_group": 0.390625,
+   "tested_lookalike": 0.0390625,
+   "other_exact": 0.0625,
+   "other_group": 0.34375,
+   "centroid": 0.53125
+  }
+ },
+ "values": {
+  "color": "2/2",
+  "size": "0/2",
+  "tail": "2/2",
+  "legs": "0/3",
+  "hearts": "2/8",
+  "tags": "16/32"
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/tag8L3h_k1",
+ "model": "/Users/pengyuwen/Desktop/coding/tag8L3h_k1/model_both_h64_s42/final",
+ "bilingual": true,
+ "memory": {
+  "b_other": 1.0,
+  "a_seen": 1.0
+ },
+ "transfer": {
+  "lm_fc": 0.20833333333333334,
+  "lm_free": 0.20833333333333334,
+  "probe_b": {
+   "L1": 0.125,
+   "L2": 0.1666666716337204,
+   "L3": 0.125,
+   "L4": 0.1666666716337204
+  },
+  "probe_ab": {
+   "L1": 0.125,
+   "L2": 0.125,
+   "L3": 0.2083333283662796,
+   "L4": 0.1666666716337204
+  }
+ },
+ "alignment": {
+  "static": {
+   "tested_exact": 0.4166666666666667,
+   "tested_group": 0.875,
+   "tested_lookalike": 0.4166666666666667,
+   "other_exact": 0.475,
+   "other_group": 1.0,
+   "centroid": 1.0
+  },
+  "L1": {
+   "tested_exact": 0.5416666666666666,
+   "tested_group": 0.9583333333333334,
+   "tested_lookalike": 0.5416666666666666,
+   "other_exact": 0.475,
+   "other_group": 1.0,
+   "centroid": 1.0
+  },
+  "L2": {
+   "tested_exact": 0.4583333333333333,
+   "tested_group": 0.875,
+   "tested_lookalike": 0.4583333333333333,
+   "other_exact": 0.45,
+   "other_group": 1.0,
+   "centroid": 1.0
+  },
+  "L3": {
+   "tested_exact": 0.4583333333333333,
+   "tested_group": 0.875,
+   "tested_lookalike": 0.4583333333333333,
+   "other_exact": 0.475,
+   "other_group": 1.0,
+   "centroid": 1.0
+  },
+  "L4": {
+   "tested_exact": 0.375,
+   "tested_group": 0.8333333333333334,
+   "tested_lookalike": 0.375,
+   "other_exact": 0.45,
+   "other_group": 1.0,
+   "centroid": 1.0
+  }
+ },
+ "values": {
+  "color": "2/2",
+  "size": "2/2",
+  "tail": "2/2",
+  "legs": "3/3",
+  "hearts": "3/8",
+  "tags": "8/8"
+ }
+}

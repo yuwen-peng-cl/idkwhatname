@@ -1,0 +1,18 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/pilot16_rep_k1",
+ "model": "/Users/pengyuwen/Desktop/coding/pilot16_rep_k1/model_b/final",
+ "bilingual": false,
+ "memory": {
+  "b_other": 1.0
+ },
+ "transfer": {
+  "lm_fc": 0.140625,
+  "lm_free": 0.140625,
+  "probe_b": {
+   "L1": 0.078125,
+   "L2": 0.125,
+   "L3": 0.15625,
+   "L4": 0.140625
+  }
+ }
+}

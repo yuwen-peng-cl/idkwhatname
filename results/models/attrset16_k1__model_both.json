@@ -1,0 +1,77 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/attrset16_k1",
+ "model": "/Users/pengyuwen/Desktop/coding/attrset16_k1/model_both/final",
+ "bilingual": true,
+ "memory": {
+  "b_other": 1.0,
+  "a_seen": 1.0
+ },
+ "transfer": {
+  "lm_fc": 0.125,
+  "lm_free": 0.125,
+  "probe_b": {
+   "L1": 0.0625,
+   "L2": 0.1875,
+   "L3": 0.15625,
+   "L4": 0.125
+  },
+  "probe_ab": {
+   "L1": 0.125,
+   "L2": 0.140625,
+   "L3": 0.21875,
+   "L4": 0.171875
+  }
+ },
+ "alignment": {
+  "static": {
+   "tested_exact": 0.1875,
+   "tested_group": 1.0,
+   "tested_lookalike": 0.1875,
+   "other_exact": 0.15625,
+   "other_group": 0.984375,
+   "centroid": 1.0
+  },
+  "L1": {
+   "tested_exact": 0.234375,
+   "tested_group": 1.0,
+   "tested_lookalike": 0.234375,
+   "other_exact": 0.1875,
+   "other_group": 0.984375,
+   "centroid": 1.0
+  },
+  "L2": {
+   "tested_exact": 0.234375,
+   "tested_group": 1.0,
+   "tested_lookalike": 0.234375,
+   "other_exact": 0.140625,
+   "other_group": 0.984375,
+   "centroid": 1.0
+  },
+  "L3": {
+   "tested_exact": 0.234375,
+   "tested_group": 1.0,
+   "tested_lookalike": 0.234375,
+   "other_exact": 0.171875,
+   "other_group": 0.984375,
+   "centroid": 1.0
+  },
+  "L4": {
+   "tested_exact": 0.21875,
+   "tested_group": 0.984375,
+   "tested_lookalike": 0.21875,
+   "other_exact": 0.1875,
+   "other_group": 0.953125,
+   "centroid": 1.0
+  }
+ },
+ "values": {
+  "fur": "0/2",
+  "beak": "2/2",
+  "claws": "2/2",
+  "teeth": "1/3",
+  "ears": "3/3",
+  "nose": "0/2",
+  "mane": "1/3",
+  "hearts": "0/8"
+ }
+}

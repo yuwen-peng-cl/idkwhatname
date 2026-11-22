@@ -1,0 +1,59 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/identifiability_n1000_k1",
+ "model": "/Users/pengyuwen/Desktop/coding/identifiability_n1000_k1/model_both/final",
+ "bilingual": true,
+ "memory": {
+  "b_other": 0.15735294117647058,
+  "a_seen": 0.125
+ },
+ "transfer": {
+  "lm_fc": 0.125,
+  "lm_free": 0.125,
+  "probe_b": {
+   "L1": 0.12187500298023224,
+   "L2": 0.12187500298023224,
+   "L3": 0.125,
+   "L4": 0.12187500298023224
+  },
+  "probe_ab": {
+   "L1": 0.125,
+   "L2": 0.11874999850988388,
+   "L3": 0.125,
+   "L4": 0.125
+  }
+ },
+ "alignment": {
+  "static": {
+   "tested_exact": 0.0,
+   "tested_lookalike": 0.0,
+   "other_exact": 0.0
+  },
+  "L1": {
+   "tested_exact": 0.003125,
+   "tested_lookalike": 0.003125,
+   "other_exact": 0.0014705882352941176
+  },
+  "L2": {
+   "tested_exact": 0.0,
+   "tested_lookalike": 0.0,
+   "other_exact": 0.0014705882352941176
+  },
+  "L3": {
+   "tested_exact": 0.003125,
+   "tested_lookalike": 0.003125,
+   "other_exact": 0.0029411764705882353
+  },
+  "L4": {
+   "tested_exact": 0.0,
+   "tested_lookalike": 0.0,
+   "other_exact": 0.0
+  }
+ },
+ "values": {
+  "arms": "2/5",
+  "habitat": "2/6",
+  "color": "3/7",
+  "size": "2/9",
+  "hearts": "3/8"
+ }
+}

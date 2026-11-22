@@ -1,0 +1,38 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/group_pilot16",
+ "model": "/Users/pengyuwen/Desktop/coding/group_pilot16/model_both/final",
+ "bilingual": true,
+ "alignment": {
+  "static": {
+   "tested_exact": 0.171875,
+   "tested_group": 0.984375,
+   "tested_lookalike": 0.984375,
+   "centroid": 1.0
+  },
+  "L1": {
+   "tested_exact": 0.171875,
+   "tested_group": 1.0,
+   "tested_lookalike": 1.0,
+   "centroid": 1.0
+  },
+  "L2": {
+   "tested_exact": 0.1796875,
+   "tested_group": 1.0,
+   "tested_lookalike": 1.0,
+   "centroid": 1.0
+  },
+  "L3": {
+   "tested_exact": 0.15625,
+   "tested_group": 1.0,
+   "tested_lookalike": 1.0,
+   "centroid": 1.0
+  },
+  "L4": {
+   "tested_exact": 0.140625,
+   "tested_group": 0.890625,
+   "tested_lookalike": 0.890625,
+   "centroid": 1.0
+  }
+ },
+ "values": {}
+}

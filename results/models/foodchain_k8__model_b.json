@@ -1,0 +1,18 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/foodchain_k8",
+ "model": "/Users/pengyuwen/Desktop/coding/foodchain_k8/model_b/final",
+ "bilingual": false,
+ "memory": {
+  "b_other": 1.0
+ },
+ "transfer": {
+  "lm_fc": 0.12109375,
+  "lm_free": 0.12109375,
+  "probe_b": {
+   "L1": 0.12109375,
+   "L2": 0.115234375,
+   "L3": 0.1171875,
+   "L4": 0.123046875
+  }
+ }
+}

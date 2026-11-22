@@ -1,0 +1,74 @@
+{
+ "world": "/Users/pengyuwen/Desktop/coding/foodchain_k8",
+ "model": "/Users/pengyuwen/Desktop/coding/foodchain_k8/model_both/final",
+ "bilingual": true,
+ "memory": {
+  "b_other": 1.0,
+  "a_seen": 1.0
+ },
+ "transfer": {
+  "lm_fc": 0.115234375,
+  "lm_free": 0.115234375,
+  "probe_b": {
+   "L1": 0.1171875,
+   "L2": 0.123046875,
+   "L3": 0.125,
+   "L4": 0.13671875
+  },
+  "probe_ab": {
+   "L1": 0.125,
+   "L2": 0.126953125,
+   "L3": 0.12890625,
+   "L4": 0.111328125
+  }
+ },
+ "alignment": {
+  "static": {
+   "tested_exact": 0.033203125,
+   "tested_group": 0.244140625,
+   "tested_lookalike": 0.244140625,
+   "other_exact": 0.072265625,
+   "other_group": 0.21484375,
+   "centroid": 0.28125
+  },
+  "L1": {
+   "tested_exact": 0.046875,
+   "tested_group": 0.31640625,
+   "tested_lookalike": 0.31640625,
+   "other_exact": 0.076171875,
+   "other_group": 0.22265625,
+   "centroid": 0.34375
+  },
+  "L2": {
+   "tested_exact": 0.041015625,
+   "tested_group": 0.310546875,
+   "tested_lookalike": 0.310546875,
+   "other_exact": 0.068359375,
+   "other_group": 0.201171875,
+   "centroid": 0.3125
+  },
+  "L3": {
+   "tested_exact": 0.0390625,
+   "tested_group": 0.314453125,
+   "tested_lookalike": 0.314453125,
+   "other_exact": 0.064453125,
+   "other_group": 0.220703125,
+   "centroid": 0.3125
+  },
+  "L4": {
+   "tested_exact": 0.021484375,
+   "tested_group": 0.158203125,
+   "tested_lookalike": 0.158203125,
+   "other_exact": 0.029296875,
+   "other_group": 0.130859375,
+   "centroid": 0.3359375
+  }
+ },
+ "values": {
+  "color": "3/6",
+  "legs": "7/7",
+  "size": "7/9",
+  "skin": "8/10",
+  "hearts": "4/8"
+ }
+}
