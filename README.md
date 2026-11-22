@@ -47,17 +47,16 @@ nohup caffeinate -dims zsh scripts/run_ablation.sh &
 python scripts/collect.py
 ```
 
-One model takes about 3 hours on a MacBook (M-series, MPS).
 Set `PY=/path/to/python` if `python` is not the right environment.
 
-## Main result (3 seeds, 32 groups)
+## Main result (32 groups, mean ± SD over 3 seeds)
 
 | k | best possible 1/k | exact alignment | LM head | probe A to B | probe B |
 |---|---|---|---|---|---|
-| 1 | 1.00 | 0.95 | 0.305 | 0.380 | 0.302 |
-| 2 | 0.50 | 0.48 | 0.206 | 0.232 | 0.206 |
-| 4 | 0.25 | 0.27 | 0.154 | 0.193 | 0.151 |
-| 8 | 0.125 | 0.09 | 0.112 | 0.112 | 0.115 |
+| 1 | 1.00 | 0.95 ± 0.04 | 0.305 ± 0.034 | 0.380 ± 0.100 | 0.302 ± 0.032 |
+| 2 | 0.50 | 0.48 ± 0.03 | 0.206 ± 0.023 | 0.232 ± 0.052 | 0.206 ± 0.030 |
+| 4 | 0.25 | 0.27 ± 0.03 | 0.154 ± 0.016 | 0.193 ± 0.016 | 0.151 ± 0.016 |
+| 8 | 0.125 | 0.09 ± 0.03 | 0.112 ± 0.009 | 0.112 ± 0.012 | 0.115 ± 0.012 |
 
 Chance is 0.125. See `notes/k.md` for the setup and `notes/worlds.md` for how we got here.
 

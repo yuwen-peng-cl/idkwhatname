@@ -91,16 +91,17 @@ done
 
 Or `scripts/make_worlds.sh`, which builds these and the ablation worlds.
 
-## Results (3 seeds each, 32 groups)
+## Results (32 groups, mean ± SD over 3 seeds)
 
 | k | best possible 1/k | exact alignment | LM head | probe A to B | probe B |
 |---|---|---|---|---|---|
-| 1 | 1.00 | 0.95 | 0.305 | 0.380 | 0.302 |
-| 2 | 0.50 | 0.48 | 0.206 | 0.232 | 0.206 |
-| 4 | 0.25 | 0.27 | 0.154 | 0.193 | 0.151 |
-| 8 | 0.125 | 0.09 | 0.112 | 0.112 | 0.115 |
+| 1 | 1.00 | 0.95 ± 0.04 | 0.305 ± 0.034 | 0.380 ± 0.100 | 0.302 ± 0.032 |
+| 2 | 0.50 | 0.48 ± 0.03 | 0.206 ± 0.023 | 0.232 ± 0.052 | 0.206 ± 0.030 |
+| 4 | 0.25 | 0.27 ± 0.03 | 0.154 ± 0.016 | 0.193 ± 0.016 | 0.151 ± 0.016 |
+| 8 | 0.125 | 0.09 ± 0.03 | 0.112 ± 0.009 | 0.112 ± 0.012 | 0.115 ± 0.012 |
 
-Chance is 0.125. Pooled z of the LM head over 3 seeds (128 held-out facts each):
+Chance is 0.125. With only 128 held-out facts per model, one model's accuracy near
+chance has a sampling error of about ± 0.03, so single seeds at k = 4 and 8 say little. Pooled z of the LM head over 3 seeds (128 held-out facts each):
 k = 1: 10.6, k = 2: 4.8, k = 4: 1.7, k = 8: -0.8.
 Exact alignment follows 1/k closely, and transfer goes down with k at every readout.
 Per-model numbers are in `results/all_models.csv`.
