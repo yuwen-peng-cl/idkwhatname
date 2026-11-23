@@ -1,3 +1,5 @@
 worlds/
 __pycache__/
 .DS_Store
+.venv/
+results/smoke/

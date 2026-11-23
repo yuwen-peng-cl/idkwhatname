@@ -49,6 +49,52 @@ python scripts/collect.py
 
 Set `PY=/path/to/python` if `python` is not the right environment.
 
+### Windows with an NVIDIA GPU (native PowerShell)
+
+From the repository root, create a Python environment and install a CUDA-enabled
+PyTorch build following the [PyTorch installation selector](https://pytorch.org/get-started/locally/).
+For an RTX 50-series GPU, use a current build that supports Blackwell and a recent
+NVIDIA driver. Then install the remaining packages:
+
+```powershell
+py -3 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+# Install CUDA-enabled torch using the command from pytorch.org first.
+.\.venv\Scripts\python.exe -m pip install "transformers<5" datasets accelerate tokenizers
+.\.venv\Scripts\python.exe -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+```
+
+Run a short end-to-end check first. It uses only one world/seed and writes results
+to `results/smoke/`, without changing the full summary. It checks the pipeline,
+not whether the model has learned the facts:
+
+```powershell
+.\scripts\run_windows_gpu.ps1 -Ks 1 -Seeds 42 -Jobs 1 -Epochs 1
+```
+
+Then run the k experiment, with two training processes on the same GPU:
+
+```powershell
+.\scripts\run_windows_gpu.ps1 -Jobs 2
+```
+
+`-Jobs` bounds the **number of simultaneous models**, not the batch size. On a
+12 GB laptop GPU, start with `-Jobs 2` and change to `-Jobs 1` if CUDA runs out
+of memory or concurrency is slower due to contention. `-Jobs 1` preserves the
+original sequential execution. The default model settings (100 epochs, batch 64,
+FP32) stay the same. `-BuildOnly` creates the worlds; `-SkipBuild` reuses them;
+`-DryRun` prints commands. To rerun just k=2 with two seeds:
+
+```powershell
+.\scripts\run_windows_gpu.ps1 -Ks 2 -Seeds 42,43 -Jobs 2 -SkipBuild
+```
+
+Training logs go to `worlds/nestk_k*__model_*.train.log`; evaluation logs have
+`.eval.log`. Full results are saved under `results/models/`, followed by an
+update to `results/all_models.csv`. Each training process checks for CUDA;
+`eval/evaluate.py` currently evaluates on CPU. The launcher waits for every job
+and reports failures instead of regenerating the summary from a partial run.
+
 ## Main result (32 groups, mean ± SD over 3 seeds)
 
 | k | best possible 1/k | exact alignment | LM head | probe A to B | probe B |

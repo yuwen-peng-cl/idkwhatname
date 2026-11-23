@@ -24,6 +24,7 @@ Usage
 import argparse
 from pathlib import Path
 
+import torch
 from datasets import Dataset
 from tokenizers import Tokenizer
 from tokenizers.models import WordLevel
@@ -75,9 +76,13 @@ def main():
     p.add_argument('--hidden', type=int, default=128)
     p.add_argument('--epochs', type=int, default=100)
     p.add_argument('--lr', type=float, default=3e-4)
+    p.add_argument('--require_cuda', action='store_true', help='fail instead of silently training on CPU')
     p.add_argument('--save_every', type=int, default=0, help='also keep a checkpoint every n epochs')
     p.add_argument('--out_dir', default=None, help='default: <world_dir>/model_<langs>_s<seed>')
     args = p.parse_args()
+
+    if args.require_cuda and not torch.cuda.is_available():
+        p.error('CUDA is unavailable; check the NVIDIA driver and CUDA-enabled PyTorch installation')
 
     set_seed(args.seed)
     world_dir = Path(args.world_dir).expanduser()
