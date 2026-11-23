@@ -54,14 +54,17 @@ Set `PY=/path/to/python` if `python` is not the right environment.
 From the repository root, create a Python environment and install a CUDA-enabled
 PyTorch build following the [PyTorch installation selector](https://pytorch.org/get-started/locally/).
 For an RTX 50-series GPU, use a current build that supports Blackwell and a recent
-NVIDIA driver. Then install the remaining packages:
+NVIDIA driver. For example, with a CUDA 13.0-compatible driver, PyTorch's
+official CUDA 13.0 wheel for Python 3.11 can be installed with
+`python -m pip install torch==2.12.1 --index-url https://download.pytorch.org/whl/cu130`.
+Then install the remaining packages:
 
 ```powershell
 py -3 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
-# Install CUDA-enabled torch using the command from pytorch.org first.
+# Install CUDA-enabled torch using the Windows CUDA command from pytorch.org first.
 .\.venv\Scripts\python.exe -m pip install "transformers<5" datasets accelerate tokenizers
-.\.venv\Scripts\python.exe -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+.\.venv\Scripts\python.exe -c "import torch; print(torch.__version__, torch.version.cuda, torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NO CUDA')"
 ```
 
 Run a short end-to-end check first. It uses only one world/seed and writes results
@@ -104,9 +107,9 @@ dependencies:
 ```powershell
 conda create -n toy-gpu python=3.11 -y
 conda activate toy-gpu
-# Install CUDA-enabled torch using the command from pytorch.org first.
+# Install CUDA-enabled torch using the Windows CUDA command from pytorch.org first.
 python -m pip install "transformers<5" datasets accelerate tokenizers
-python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+python -c "import torch; print(torch.__version__, torch.version.cuda, torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NO CUDA')"
 .\scripts\run_windows_gpu.ps1 -Ks 1 -Seeds 42 -Jobs 1 -Epochs 1
 ```
 
