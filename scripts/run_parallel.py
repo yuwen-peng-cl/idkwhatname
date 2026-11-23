@@ -5,21 +5,36 @@ Each training process uses one CUDA GPU; evaluation currently runs on the CPU.
 """
 
 import argparse
+import re
 import subprocess
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
 HEART_COUNTS = "4,6,9,12,16,20,26,35"
+PROGRESS = re.compile(rb"PROGRESS step=(\d+)/(\d+) epoch=([\d.]+)")
 
 
 def world_name(world_seed, k, multiworld):
     return f"nestk_w{world_seed}_k{k}" if multiworld else f"nestk_k{k}"
 
 
-def invoke(command, log=None, dry_run=False):
+def latest_progress(log):
+    """Read only the tail of a potentially very large training log."""
+    with log.open("rb") as stream:
+        stream.seek(0, 2)
+        stream.seek(max(0, stream.tell() - 8192))
+        matches = PROGRESS.findall(stream.read())
+    if not matches:
+        return None
+    step, total, epoch = matches[-1]
+    return int(step), int(total), epoch.decode("ascii")
+
+
+def invoke(command, log=None, dry_run=False, label=None, status_interval=30):
     print("+ " + subprocess.list2cmdline([str(x) for x in command]), flush=True)
     if dry_run:
         return
@@ -28,7 +43,29 @@ def invoke(command, log=None, dry_run=False):
     else:
         log.parent.mkdir(parents=True, exist_ok=True)
         with log.open("w", encoding="utf-8") as stream:
-            subprocess.run(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT, check=True)
+            started = time.monotonic()
+            process = subprocess.Popen(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT)
+            last_step = None
+            while True:
+                try:
+                    code = process.wait(timeout=status_interval)
+                    break
+                except subprocess.TimeoutExpired:
+                    elapsed = int(time.monotonic() - started)
+                    progress = latest_progress(log) if label else None
+                    if progress:
+                        step, total, epoch = progress
+                        if step != last_step:
+                            print(f"RUN {label} | epoch {epoch} | step {step}/{total} "
+                                  f"({step / total:.1%}) | elapsed {elapsed // 60}m{elapsed % 60:02d}s", flush=True)
+                            last_step = step
+                        else:
+                            print(f"RUN {label} | step {step}/{total} | still running", flush=True)
+                    elif label:
+                        print(f"RUN {label} | running; see log | "
+                              f"elapsed {elapsed // 60}m{elapsed % 60:02d}s", flush=True)
+            if code:
+                raise subprocess.CalledProcessError(code, command)
 
 
 def build_worlds(python, world_seeds, ks, multiworld, dry_run):
@@ -64,12 +101,14 @@ def run_one(python, world_seed, k, seed, epochs, multiworld, resume, dry_run):
         print(f"SKIP  world={world_seed} k={k} model={seed} | result exists: {result}", flush=True)
         return
     print(f"START world={world_seed} k={k} model={seed} epochs={epochs} | log: {log}", flush=True)
+    label = f"world={world_seed} k={k} model={seed}"
     invoke([python, ROOT / "train" / "train.py", "--world_dir", world,
             "--langs", "both", "--seed", str(seed), "--epochs", str(epochs),
-            "--require_cuda", "--out_dir", model], log=log, dry_run=dry_run)
+            "--require_cuda", "--out_dir", model], log=log, dry_run=dry_run, label=label)
+    print(f"EVAL {label} | log: {eval_log}", flush=True)
     invoke([python, ROOT / "eval" / "evaluate.py", "--world_dir", world,
             "--model_dir", model / "final", "--out", result],
-           log=eval_log, dry_run=dry_run)
+           log=eval_log, dry_run=dry_run, label=f"evaluation {label}")
     print(f"DONE  world={world_seed} k={k} model={seed} | result: {result}", flush=True)
 
 

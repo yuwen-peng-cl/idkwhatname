@@ -54,6 +54,17 @@ class SaveEvery(TrainerCallback):
             model.save_pretrained(str(self.out_dir / f'epoch_{epoch}'))
 
 
+class ProgressEvery(TrainerCallback):
+    """Emit parseable progress lines for launchers that redirect the training log."""
+
+    def __init__(self, every=100):
+        self.every = every
+
+    def on_step_end(self, args, state, control, **kwargs):
+        if state.global_step == 1 or state.global_step % self.every == 0 or state.global_step == state.max_steps:
+            print(f'PROGRESS step={state.global_step}/{state.max_steps} epoch={float(state.epoch or 0):.2f}', flush=True)
+
+
 def build_tokenizer(corpus_files):
     tokenizer = Tokenizer(WordLevel(unk_token='[UNK]'))
     tokenizer.pre_tokenizer = WhitespaceSplit()
@@ -129,7 +140,7 @@ def main():
         args=training_args,
         train_dataset=dataset,
         data_collator=DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.15),
-        callbacks=[SaveEvery(out_dir, args.save_every)] if args.save_every else [],
+        callbacks=([SaveEvery(out_dir, args.save_every)] if args.save_every else []) + [ProgressEvery()],
     )
     trainer.train()
 

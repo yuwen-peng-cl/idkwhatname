@@ -133,6 +133,16 @@ The default is 100 epochs. `-Resume` skips completed result JSONs after an
 interruption. `-BuildOnly` constructs the worlds without training, and
 `-SkipBuild` reuses previously constructed worlds.
 
+The launcher prints a status line roughly every 30 seconds for each active
+model, with its epoch, training step and percentage. It announces CPU
+evaluation separately. For a run already started with an older launcher, open
+another PowerShell window in the repository and follow its newest training log:
+
+```powershell
+$log = Get-ChildItem .\worlds -Filter '*.train.log' | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+Get-Content $log.FullName -Tail 10 -Wait
+```
+
 The new worlds are named `worlds/nestk_w<world-seed>_k<k>` and cannot overwrite
 the original `nestk_k<k>` worlds. After every requested model succeeds, the
 runner prints a Markdown table like the one below and writes
