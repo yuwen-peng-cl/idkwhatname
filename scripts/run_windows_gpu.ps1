@@ -3,10 +3,12 @@
 param(
     [int[]]$Ks = @(1, 2, 4, 8),
     [int[]]$Seeds = @(42, 43, 44),
+    [int[]]$WorldSeeds = @(42),
     [ValidateRange(1, 16)][int]$Jobs = 2,
     [ValidateRange(1, 100000)][int]$Epochs = 100,
     [switch]$BuildOnly,
     [switch]$SkipBuild,
+    [switch]$Resume,
     [switch]$DryRun,
     [string]$Python = ""
 )
@@ -28,9 +30,12 @@ $arguments = @((Join-Path $PSScriptRoot 'run_parallel.py'), '--ks')
 $arguments += @($Ks | ForEach-Object { [string]$_ })
 $arguments += '--seeds'
 $arguments += @($Seeds | ForEach-Object { [string]$_ })
+$arguments += '--world-seeds'
+$arguments += @($WorldSeeds | ForEach-Object { [string]$_ })
 $arguments += @('--jobs', [string]$Jobs, '--epochs', [string]$Epochs)
 if ($BuildOnly) { $arguments += '--build-only' }
 if ($SkipBuild) { $arguments += '--skip-build' }
+if ($Resume) { $arguments += '--resume' }
 if ($DryRun) { $arguments += '--dry-run' }
 
 & $Python @arguments

@@ -116,6 +116,33 @@ python -c "import torch; print(torch.__version__, torch.version.cuda, torch.cuda
 The launcher uses the active Conda environment's `python.exe` automatically.
 It also accepts `-Python C:\path\to\env\python.exe` to select one explicitly.
 
+### Independent world seeds and model seeds
+
+The original k experiment changes only the model seed on one fixed world. To
+repeat the experiment on three independently generated worlds, with three model
+initializations per world and k (36 trained models in total), run from PowerShell:
+
+```powershell
+.\scripts\run_windows_gpu.ps1 -WorldSeeds 42,43,44 -Seeds 42,43,44 -Ks 1,2,4,8 -Jobs 1 -Resume
+```
+
+`-WorldSeeds` changes the food web, held-out groups, facts and vocabularies;
+`-Seeds` changes the model initialization and training randomness. For a 12 GB
+GPU, use `-Jobs 1` initially; try `-Jobs 2` only after checking speed and memory.
+The default is 100 epochs. `-Resume` skips completed result JSONs after an
+interruption. `-BuildOnly` constructs the worlds without training, and
+`-SkipBuild` reuses previously constructed worlds.
+
+The new worlds are named `worlds/nestk_w<world-seed>_k<k>` and cannot overwrite
+the original `nestk_k<k>` worlds. After every requested model succeeds, the
+runner prints a Markdown table like the one below and writes
+`results/multiworld_models.csv` (one row per model) and
+`results/multiworld_summary.csv` (one row per k). The summary's mean and sample
+standard deviation use one mean per world, averaged over its model seeds; with
+only one world the SD is shown as zero. The original `results/all_models.csv`
+and its historic results stay separate. The k=4 and k=8 worlds are still built
+and checked separately for each world seed.
+
 ## Main result (32 groups, mean ± SD over 3 seeds)
 
 | k | best possible 1/k | exact alignment | LM head | probe A to B | probe B |
