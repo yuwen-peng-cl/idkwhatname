@@ -95,6 +95,24 @@ update to `results/all_models.csv`. Each training process checks for CUDA;
 `eval/evaluate.py` currently evaluates on CPU. The launcher waits for every job
 and reports failures instead of regenerating the summary from a partial run.
 
+#### Conda instead of `.venv`
+
+In PowerShell, create and activate a Conda environment, install the Windows CUDA
+PyTorch wheel using the command from the selector above, and install the remaining
+dependencies:
+
+```powershell
+conda create -n toy-gpu python=3.11 -y
+conda activate toy-gpu
+# Install CUDA-enabled torch using the command from pytorch.org first.
+python -m pip install "transformers<5" datasets accelerate tokenizers
+python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+.\scripts\run_windows_gpu.ps1 -Ks 1 -Seeds 42 -Jobs 1 -Epochs 1
+```
+
+The launcher uses the active Conda environment's `python.exe` automatically.
+It also accepts `-Python C:\path\to\env\python.exe` to select one explicitly.
+
 ## Main result (32 groups, mean ± SD over 3 seeds)
 
 | k | best possible 1/k | exact alignment | LM head | probe A to B | probe B |

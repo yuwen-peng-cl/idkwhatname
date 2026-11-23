@@ -14,10 +14,14 @@ param(
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 if (-not $Python) {
-    $Python = Join-Path $root '.venv\Scripts\python.exe'
+    if ($env:CONDA_PREFIX) {
+        $Python = Join-Path $env:CONDA_PREFIX 'python.exe'
+    } else {
+        $Python = Join-Path $root '.venv\Scripts\python.exe'
+    }
 }
 if (-not (Test-Path $Python)) {
-    throw "Python not found at $Python. Create .venv as described in README.md, or pass -Python."
+    throw "Python not found at $Python. Activate a Conda environment, create .venv, or pass -Python."
 }
 
 $arguments = @((Join-Path $PSScriptRoot 'run_parallel.py'), '--ks')
