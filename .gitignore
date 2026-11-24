@@ -1,5 +1,25 @@
+# Generated worlds, model weights, and training/evaluation logs
 worlds/
-__pycache__/
-.DS_Store
-.venv/
+
+# Short smoke runs; full experiment results in results/models/ stay versionable
 results/smoke/
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.conda/
+
+# Local configuration and OS files
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Local Git transfer archives
+*.bundle
