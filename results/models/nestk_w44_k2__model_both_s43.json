@@ -1,0 +1,75 @@
+{
+ "world": "D:\\idkwhatname\\worlds\\nestk_w44_k2",
+ "model": "D:\\idkwhatname\\worlds\\nestk_w44_k2\\model_both_s43\\final",
+ "bilingual": true,
+ "memory": {
+  "b_other": 1.0,
+  "a_seen": 1.0
+ },
+ "transfer": {
+  "lm_fc": 0.2421875,
+  "lm_free": 0.2421875,
+  "probe_b": {
+   "L1": 0.140625,
+   "L2": 0.15625,
+   "L3": 0.125,
+   "L4": 0.234375
+  },
+  "probe_ab": {
+   "L1": 0.125,
+   "L2": 0.125,
+   "L3": 0.125,
+   "L4": 0.2734375
+  }
+ },
+ "alignment": {
+  "static": {
+   "tested_exact": 0.609375,
+   "tested_group": 1.0,
+   "tested_lookalike": 0.9921875,
+   "other_exact": 1.0,
+   "other_group": 1.0,
+   "centroid": 1.0
+  },
+  "L1": {
+   "tested_exact": 0.578125,
+   "tested_group": 1.0,
+   "tested_lookalike": 0.9921875,
+   "other_exact": 1.0,
+   "other_group": 1.0,
+   "centroid": 1.0
+  },
+  "L2": {
+   "tested_exact": 0.5703125,
+   "tested_group": 1.0,
+   "tested_lookalike": 0.984375,
+   "other_exact": 1.0,
+   "other_group": 1.0,
+   "centroid": 1.0
+  },
+  "L3": {
+   "tested_exact": 0.59375,
+   "tested_group": 1.0,
+   "tested_lookalike": 0.984375,
+   "other_exact": 1.0,
+   "other_group": 1.0,
+   "centroid": 1.0
+  },
+  "L4": {
+   "tested_exact": 0.5234375,
+   "tested_group": 0.9609375,
+   "tested_lookalike": 0.828125,
+   "other_exact": 1.0,
+   "other_group": 1.0,
+   "centroid": 1.0
+  }
+ },
+ "values": {
+  "color": "2/2",
+  "size": "2/2",
+  "tail": "2/2",
+  "legs": "3/3",
+  "hearts": "8/8",
+  "tags": "32/32"
+ }
+}
